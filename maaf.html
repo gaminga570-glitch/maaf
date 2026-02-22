@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apology Page</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, pink, lightblue);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      font-size: 1.2em;
+      line-height: 1.5em;
+    }
+    img {
+      max-width: 90%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+    .question {
+      font-size: 1.1em;
+      margin: 20px 0;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    button {
+      flex: 1 1 auto;
+      min-width: 120px;
+      padding: 14px 20px;
+      font-size: 1.1em;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    #yesBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+    }
+    #message {
+      font-size: 1.2em;
+      margin-top: 30px;
+      color: #222;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    sayang, babiey minta maaf sebab buat kamu marah, kamu kecewa. ye salah babiey buat kamu begitu. 
+    ye betul kalau kamu lepak sekalipun kamu tetap check fon tapi saya betul betul letak tepi fon. 
+    jadi babiey minta maaf sebab dah dua kali kalau lepak babiey buat macamni dekat kamu. dikala kamu sakit pula tu kan sayang? 
+    babiey tak tahu nak pujuk sayang macam mana lagi. babiey rasa dengan cara ni jela boleh lembutkan hati sayang sikit hm. 
+    tu jela babiey nak cakap. i love you sayanggggg ❤️
+  </h1>
+
+  <img src="maaf.avif" alt="Apology Image">
+
+  <div class="question">kamu maafkan babiey tak sayang hmmmmm?</div>
+  <div class="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+
+  <div id="message"></div>
+
+  <audio id="bgMusic" loop>
+    <source src="maaf.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    let noClicks = 0;
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const message = document.getElementById("message");
+    const music = document.getElementById("bgMusic");
+
+    // play music when user clicks anywhere
+    function startMusic() {
+      music.play().catch(()=>{});
+      document.removeEventListener("click", startMusic);
+    }
+    document.addEventListener("click", startMusic);
+
+    noBtn.addEventListener("click", () => {
+      noClicks++;
+      let scale = 1 + noClicks * 0.5;
+      yesBtn.style.transform = `scale(${scale})`;
+      if (noClicks >= 4) {
+        yesBtn.style.transform = "scale(8)";
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+      message.textContent = "Thank you sayang maafkan babiey, don't mad mad lagi tau. I love youuuuuuu ❤️";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+    });
+  </script>
+</body>
+</html>
